@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == request_code){
             if (resultCode == RESULT_OK){
                 /*Bundle bundle = new Bundle();
-                bundle = data.getExtras();*/
+                bundle = data.getExtras();*/ // Causes crashing of application
                 Bitmap bmpImage = null;
                 try {
                     bmpImage = MediaStore.Images.Media.getBitmap(
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 File file = Environment.getExternalStorageDirectory();
 
                 // Creates a new folder in sd card
+                // Path to create new image file
                 File dir = new File(file.getAbsolutePath()+"/camScanner/");
 
                 // Create object for the image
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         this.getContentResolver().notifyChange(imageUri, null);
         ContentResolver cr = this.getContentResolver();
         try{
+            // Setting the image bitmap on image view
             imageView.setImageBitmap(bp);
         }
         catch (Exception e){
